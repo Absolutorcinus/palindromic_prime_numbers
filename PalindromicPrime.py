@@ -21,7 +21,7 @@ sadle_elements = array_two_d_of_permutations[:,-1] # the last element from each 
 sadle_elements = np.reshape(sadle_elements,(1000000,1)).astype(int)
 sadle_elements = sadle_elements.astype(int)
 
-sevens = np.ones((1000000,1))*7 # 7302000000 - 24 h  1000000000000
+sevens = np.ones((1000000,1))*9
 sevens = sevens.astype(int)
 #we concatenate the first five digits with the sadle and with the flipped first elements to get all the palindroms between 799...7 and 7000..7
 '''
@@ -38,49 +38,17 @@ polindroms_list = [''.join(row) for row in polindroms_list]
 polindroms_list = list(map(int, polindroms_list))
 
 def check_prime(num):
-    # prime numbers are greater than 1
-    if num > 1:
-        # check for factors
-        for i in range(2 ,num):
-            if (num % i) == 0:
-                break
-        else:
-            return 1
+
+    return num > 1 and all(num % d for d in range(2, int(num ** .5) + 1))
+
 
 polindroms_asc = polindroms_list. reverse()
+print( "polindromes reversed... ")
 
-polindroms_asc = np.array(polindroms_asc)
-print("53")
-print(polindroms_asc)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print( "checking primes... ")
+for palindrom in polindroms_list:
+    print(palindrom)
+    if(check_prime(palindrom)==True):
+        print(f"{ palindrom} is the Largest 13 digits Palindromic prime number")
+        
+        break
